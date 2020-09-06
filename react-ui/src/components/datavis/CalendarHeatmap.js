@@ -52,6 +52,7 @@ export class Heatmap extends React.Component {
   render() {
     const data = this.state.data;
     const chart = this.props.chart;
+    const today = new Date();
     return (
       <div>
         <div>
@@ -59,6 +60,8 @@ export class Heatmap extends React.Component {
           {
             (chart && chart.length > 0) ?
             <CalendarHeatmap
+              startDate={shiftDate(today, -100)}
+              endDate={today}
               values={data}
               classForValue={(value) => {
                 if (!value) {
@@ -82,6 +85,13 @@ export class Heatmap extends React.Component {
     );
   }
 }
+
+function shiftDate(date, numDays) {
+  const newDate = new Date(date);
+  newDate.setDate(newDate.getDate() + numDays);
+  return newDate;
+}
+
 const mapState = (state) => {
   return {
     chart: state.chart,
