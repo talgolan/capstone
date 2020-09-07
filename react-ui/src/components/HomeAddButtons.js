@@ -61,15 +61,22 @@ export class HomeAddButtons extends React.Component {
         <div>
           <button onClick={this.openDoctorModal}>Add a Doctor</button>
           <ReactModal
+            className="popup"
             isOpen={this.state.showDoctorModal}
             contentLabel="Example Modal"
           >
+            <button
+              className="close"
+              type="button"
+              onClick={() => this.closeDoctorModal()}
+            >
+              X
+            </button>
             <AddDoctor
               close={this.closeDoctorModal}
               currentUser={this.props.currentUser}
               addNewDoctor={this.props.addNewDoctor}
             />
-            <button onClick={this.closeDoctorModal}>Close</button>
           </ReactModal>
         </div>
 
@@ -78,14 +85,19 @@ export class HomeAddButtons extends React.Component {
             Add a Medication
           </button>
           <ReactModal
+            className="popup"
             isOpen={this.state.showMedicineModal}
             contentLabel="Single Document"
           >
+            <button
+              className="close"
+              type="button"
+              onClick={() => this.closeMedicineModal()}
+            >
+              X
+            </button>
             <>
               <AddMedication close={this.closeMedicineModal} />
-              <button type="button" onClick={this.closeMedicineModal}>
-                Close
-              </button>
             </>
           </ReactModal>
         </div>
@@ -93,15 +105,22 @@ export class HomeAddButtons extends React.Component {
         <div>
           <button onClick={this.openConditionModal}>Add a Condition</button>
           <ReactModal
+            className="popup"
             isOpen={this.state.showConditionModal}
             contentLabel="Single Document"
           >
+            <button
+              className="close"
+              type="button"
+              onClick={() => this.closeConditionModal()}
+            >
+              X
+            </button>
             <AddConditionForm
               close={this.closeConditionModal}
               currentUser={this.props.currentUser}
               addCondition={this.props.addCondition}
             />
-            <button onClick={this.closeConditionModal}>close</button>
           </ReactModal>
         </div>
       </div>
