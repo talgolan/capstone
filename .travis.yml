@@ -16,11 +16,14 @@ before_script:
   - cp database.yml
 script:
   - npm run build # make the bundle
-before_deploy:
-   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-deploy:
-  skip_cleanup: true # prevents travis from deleting the build
+before_deploy: # omit node_modules, since we set skip_cleanup below
+  - rm -rf node_modules
+deploy: # see README for details on these keys
+  # prevents travis from deleting the build
+  skip_cleanup: true
   provider: heroku
-  app: elemental-health # see README
+  # app should be your heroku app name; see README
+  app: elemental-health
+  # the secure key indicates an encrypted value; see README
   api_key:
-    secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+    secure: hktvNscQsguCpmgmvCnzscZH827tV7rT4viJfeixrO0x9OsO1sVaJ+6+weEUt6d5HWwBvNN/EMMKyHtqwTfihUoGqh9yRHdDNyKWIv0HGaZJA34Lg0BysFU1CuL+0jH1oZGQQWZmBmyD6GSonKXgcTqra7l7rU21aQd52HZ8SBxTFbGsQoo0zXBfIedYV80D26eG5dz6I1QgQ2OCjhFmY5I4tgl2plNI32RFA5gCbUf5QpnzJRYTnKOjLRzPr6xjFb0/YgMd3TIfTN7eTZBKRspnGrTdaXNhhULE8wQq8kNsRRCWcEGYO5BcHTX9qyYll6WWB39IQQ9UaIAfl/bd8BPPMJMzWE3kwhLIlGxdMxvCdNowmh7e6oavfQj6tpi660+f0QGmH4LFkri362FeMDYl7yczU0Ubj1t81m2SPDjlr0ox4xwMLqXKa32H1v+DXWJvCUepS6UIl6E48DPYQBIcuMqYgLiCutcaUc4Eu+YZ9ehkva2Vu0JMHmT8r1mPCxbP2GzH8vMivnmckAhOOCaqzbRg9WPdyzN3pFzqZkV99emnP5fvAFrQCYAJEwhKsYpdiMY4fTwrcWYawNmBTMkMHYpW7CvYZN0k74DoLN21qB5rixDAxYhPp3zfQ21flqny51Fn5YD5th68MPfcwgeJLme4QHRWC88pIQ0pz0A=
